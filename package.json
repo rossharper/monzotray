@@ -1,0 +1,17 @@
+{
+  "name": "monzotray",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.0.1",
+    "flashheart": "^2.5.1",
+    "lodash": "^4.16.1",
+    "moment": "^2.15.1"
+  }
+}
