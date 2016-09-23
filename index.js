@@ -16,7 +16,7 @@ const moment = require('moment');
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 let tray
-let menu
+let trayMenu
 
 function createWindow() {
     // Create the browser window.
@@ -54,11 +54,10 @@ function loadBalance() {
             return;
         }
 
+        console.log('Got balance')
         tray.setTitle(`${balance}`);
     });
 }
-
-
 
 function pad(string, length) {
     while (string.length < length) {
@@ -72,6 +71,11 @@ function longest(data, key) {
     return _.cloneDeep(data).sort((a, b) => {
         return a[key].length - b[key].length;
     }).reverse()[0][key].length;
+}
+
+function updateMenu(menu) {
+    trayMenu = menu
+    tray.setContextMenu(trayMenu)
 }
 
 function print(transactions) {
@@ -93,7 +97,16 @@ function print(transactions) {
     const longestAmount = longest(data, 'amount');
     const longestDescription = longest(data, 'description');
 
-    menu = new Menu()
+    const menu = new Menu()
+    menu.append(new MenuItem({
+        label: 'Refresh',
+        click() {
+            update()
+        }
+    }))
+    menu.append(new MenuItem({
+        type: 'separator'
+    }))
     data.forEach((d) => {
         menu.append(new MenuItem({
             label: pad(d.amount, longestAmount) + pad(d.description, longestDescription) + d.time,
@@ -102,7 +115,7 @@ function print(transactions) {
             }
         }))
     });
-    tray.setContextMenu(menu)
+    updateMenu(menu)
 }
 
 function loadRecents() {
@@ -121,8 +134,15 @@ function loadRecents() {
             return;
         }
 
+        console.log('Got recent transactions')
         print(transactions);
     });
+}
+
+function update() {
+    console.log('Update...')
+    loadBalance()
+    loadRecents()
 }
 
 function onReady() {
@@ -131,8 +151,7 @@ function onReady() {
     tray.setToolTip('💳 Monzo')
 
     //createWindow()
-    loadBalance()
-    loadRecents()
+    update()
 
     tray.on('click', () => {
             //win.isVisible() ? win.hide() : win.show()
