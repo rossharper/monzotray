@@ -4,7 +4,7 @@
 
 Quickly hacked Electron-based app that shows Monzo balance in the system tray. Uses code shamelessly stolen from @robinjmurphy.
 
-Note: it currently only loads balance and recent transactions once on load - it does not refresh data whilst running.
+Note: it currently only loads balance and recent transactions once on load - it does not refresh data automatically whilst running.
 
 I don't make any promises about developing this any further!
 
