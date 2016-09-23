@@ -19,6 +19,7 @@ It is currently unpackaged, but can be run if you install Electron locally or gl
 ```
 git clone https://github.com/rossharper/monzotray`
 cd monzotray
+npm install
 ```
 
 Install Electron:
