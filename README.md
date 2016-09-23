@@ -1,4 +1,7 @@
 # monzotray
+
+![Screenshot](https://github.com/rossharper/monzotray/raw/master/monzotrayss.png)
+
 Quickly hacked Electron-based app that shows Monzo balance in the system tray. Uses code shamelessly stolen from @robinjmurphy.
 
 Note: it currently only loads balance and recent transactions once on load - it does not refresh data whilst running.
